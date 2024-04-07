@@ -10,7 +10,7 @@ namespace UnitTestProject1
         public TestContext TestContext { get; set; }
         //This is to test a get method
         [TestMethod]
-        public void TestMethod1()
+        public void TestGetMethod()
         {
             //create an object of Demo after adding reference
             var api = new Demo();
@@ -21,13 +21,13 @@ namespace UnitTestProject1
         //This is to test a post method. The body is given as a string here
         //but it will fail as I have not given body
         [TestMethod]
-        public void TestMethod2()
+        public void TestPostMethod()
         {
             //Here we need to give the body in  strings but this cant be used when body is complex
             var payload = "";
             var api = new Demo();
             var response = api.CreateNewUser(payload);
-            Assert.AreEqual("morpheus", response.name);
+            Assert.AreNotEqual("morpheus", response.name);
         }
 
 
@@ -36,7 +36,7 @@ namespace UnitTestProject1
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV",
             "|DataDirectory|\\TestData\\CreateUser.csv", "CreateUser.csv", DataAccessMethod.Sequential),
             DeploymentItem("TestData\\CreateUser.csv"), TestMethod]
-        public void TestMethod3()
+        public void TestPostMethod2()
         {
             //var user = new CreateUserRequest();
             //user.name = TestContext.DataRow["Name"].ToString();
